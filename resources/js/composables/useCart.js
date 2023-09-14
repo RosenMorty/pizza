@@ -1,3 +1,4 @@
+import { property } from 'lodash'
 import { computed, ref } from 'vue'
 
 const items = ref([])
@@ -5,6 +6,14 @@ const items = ref([])
 export default function useCart () {
 
   const addPizza = (properties) => {
+    items.value.push(properties)
+  }
+
+  const addSushi = (properties) => {
+    items.value.push(properties)
+  }
+
+  const addDesert = (properties) => {
     items.value.push(properties)
   }
 
@@ -20,6 +29,8 @@ export default function useCart () {
 
   return {
     addPizza,
+    addSushi,
+    addDesert,
     getCountForId,
     count,
     price,

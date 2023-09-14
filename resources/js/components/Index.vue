@@ -10,7 +10,7 @@
           </div>
         </div>
         <div class="header__cart">
-          <a class="button button--cart" href="/cart.html">
+          <a class="button button--cart" href="cart.html">
             <span>{{ price }} ₽</span>
             <div class="button__delimiter"></div>
             <svg
@@ -53,11 +53,10 @@
           <div class="categories">
             <ul>
               <li class="active">Все</li>
-              <li>Мясные</li>
-              <li>Вегетарианская</li>
-              <li>Гриль</li>
-              <li>Острые</li>
-              <li>Закрытые</li>
+              <li>Пицца</li>
+              <li>Роллы</li>
+              <li>Десерты</li>
+              <li>Напитки</li>
             </ul>
           </div>
           <div class="sort">
@@ -99,19 +98,50 @@
               @add-to-cart="addPizzaToCart"
           ></pizza>
         </div>
+        <h2 class="content__title">Роллы</h2>
+        <div class="content__items">
+          <sushi
+              v-for="sushi in sushis"
+              :id="sushi.id"
+              :key="sushi.id"
+              :image="sushi.image"
+              :price="sushi.price"
+              :title="sushi.title"
+              :ingredients="sushi.ingredients"
+              @add-to-cart="addSushisToCart"
+          ></sushi>
+        </div>
+        <h2 class="content__title">Десерты</h2>
+        <div class="content__items">
+          <desert
+              v-for="desert in deserts"
+              :id="desert.id"
+              :key="desert.id"
+              :image="desert.image"
+              :price="desert.price"
+              :title="desert.title"
+              :ingredients="desert.ingredients"
+              @add-to-cart="addDesertToCart"
+          ></desert>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import Desert from "./Desert"
+import Sushi from "./Sushi"
 import Pizza from './Pizza'
 import { ref } from 'vue'
 import useCart from '../composables/useCart'
 
 export default {
+  name: "Index",
   components: {
     Pizza,
+    Sushi,
+    Desert,
   },
 
   setup () {
@@ -309,8 +339,267 @@ export default {
       },
     ])
 
+    const sushis = ref([
+    {
+        id: 28,
+        title: 'Унаги маки',
+        price: 299,
+        image: 'https://static.pizzasushiwok.ru/images/menu_new/159-300.jpg',
+        ingredients: 'Соус "Унаги", рис, нори, огурцы свежие, угорь копченый, кунжут'
+      },
+      {
+        id: 29,
+        title: 'Суши-сэндвич с лососем',
+        price: 399,
+        image: 'https://static.pizzasushiwok.ru/images/menu_new/1875-300.jpg',
+        ingredients: 'Рис, нори, сыр сливочный, лосось слабосоленый, огурцы свежие, сухари панировочные, соус "Унаги", кунжут'
+      },
+      {
+        id: 30,
+        title: 'Суши-сэндвич с крабом',
+        price: 299,
+        image: 'https://static.pizzasushiwok.ru/images/menu_new/1876-300.jpg',
+        ingredients: 'Рис, нори, краб снежный, соус "Яки", сухари панировочные, соус "Унаги", кунжут'
+      },
+      {
+        id: 31,
+        title: 'Митто ролл',
+        price: 269,
+        image: 'https://static.pizzasushiwok.ru/images/menu_new/757-300.jpg',
+        ingredients: 'Рис, нори, сыр сливочный, бекон, куриная грудка с паприкой, сыр "Пармезан", соус "Цезарь"'
+      },
+      {
+        id: 32,
+        title: 'Цезарь ролл',
+        price: 269,
+        image: 'https://static.pizzasushiwok.ru/images/menu_new/182-300.jpg',
+        ingredients: 'Соус "Цезарь", сыр "Пармезан", рис, нори, куриная грудка с паприкой, салат "Айсберг", кунжут'
+      },
+      {
+        id: 33,
+        title: 'Калифорния хит 1',
+        price: 269,
+        image: 'https://static.pizzasushiwok.ru/images/menu_new/183-300.jpg',
+        ingredients: 'Рис, нори, майонез, огурцы свежие, краб снежный, кунжут'
+      },
+      {
+        id: 34,
+        title: 'Хотто ролл',
+        price: 269,
+        image: 'https://static.pizzasushiwok.ru/images/menu_new/1460-300.jpg',
+        ingredients: 'Рис, нори, сыр сливочный, салат "Айсберг", куриная грудка с паприкой, лук фри, сыр "Пармезан", соус "Цезарь"'
+      },
+      {
+        id: 35,
+        title: 'Бостон ролл',
+        price: 269,
+        image: 'https://static.pizzasushiwok.ru/images/menu_new/1461-300.jpg',
+        ingredients: 'Рис, нори, сыр сливочный, огурцы свежие, куриная грудка с паприкой, бекон, соус "Унаги", кунжут'
+      },
+      {
+        id: 36,
+        title: 'Тори Маки ролл new',
+        price: 269,
+        image: 'https://static.pizzasushiwok.ru/images/menu_new/1591-300.jpg',
+        ingredients: 'Рис, нори, огурцы свежие, помидоры, куриная грудка с паприкой, соус "Шеф" (чеснок зелень)'
+      },
+      {
+        id: 37,
+        title: 'Филадельфия хит ролл',
+        price: 399,
+        image: 'https://static.pizzasushiwok.ru/images/menu_new/828-300.jpg',
+        ingredients: 'Рис, нори, сыр сливочный, огурцы свежие, омлет, лосось слабосоленый'
+      },
+      {
+        id: 38,
+        title: 'Калифорния Лайт',
+        price: 299,
+        image: 'https://static.pizzasushiwok.ru/images/menu_new/1463-300.jpg',
+        ingredients: 'Рис, нори, майонез, краб снежный, огурцы свежие, икра "Масаго"'
+      },
+      {
+        id: 39,
+        title: 'Калифорния с лососем',
+        price: 439,
+        image: 'https://static.pizzasushiwok.ru/images/menu_new/375-300.jpg',
+        ingredients: 'Рис, нори, майонез, авокадо, огурцы свежие, лосось слабосоленый, икра "Масаго"'
+      },
+      {
+        id: 40,
+        title: 'Темпура Чиз ролл',
+        price: 269,
+        image: 'https://static.pizzasushiwok.ru/images/menu_new/1462-300.jpg',
+        ingredients: 'Рис, нори, сыр сливочный, сухари панировочные'
+      },
+      {
+        id: 41,
+        title: 'Бекон темпура ролл',
+        price: 339,
+        image: 'https://static.pizzasushiwok.ru/images/menu_new/675-300.jpg',
+        ingredients: 'Рис, нори, бекон, соус "Техасский барбекю", сыр сливочный, огурцы свежие, сухари панировочные'
+      },
+      {
+        id: 42,
+        title: 'Гурмэ темпура ролл',
+        price: 369,
+        image: 'https://static.pizzasushiwok.ru/images/menu_new/672-300.jpg',
+        ingredients: 'Рис, нори, лосось копченый, сыр сливочный, краб снежный, сухари панировочные'
+      },
+      {
+        id: 43,
+        title: 'Кани темпура ролл',
+        price: 429,
+        image: 'https://static.pizzasushiwok.ru/images/menu_new/1428-300.jpg',
+        ingredients: 'Нори, краб снежный, сыр сливочный, икра "Масаго", омлет, угорь копченый, сухари панировочные, соус "Унаги"'
+      },
+      {
+        id: 44,
+        title: 'Домашний темпура ролл',
+        price: 369,
+        image: 'https://static.pizzasushiwok.ru/images/menu_new/670-300.jpg',
+        ingredients: 'Рис, нори, бекон, креветки, сыр сливочный, сухари панировочные'
+      },
+      {
+        id: 45,
+        title: 'Цезарь темпура ролл',
+        price: 309,
+        image: 'https://static.pizzasushiwok.ru/images/menu_new/753-300.jpg',
+        ingredients: 'Соус "Цезарь", сыр "Пармезан", рис, нори, салат "Айсберг", помидоры, куриная грудка с паприкой, сухари панировочные'
+      },
+      {
+        id: 46,
+        title: 'Гребешок темпура ролл',
+        price: 429,
+        image: 'https://static.pizzasushiwok.ru/images/menu_new/823-300.jpg',
+        ingredients: 'Рис, нори, гребешок морской, сыр сливочный, огурцы свежие, икра "Масаго"'
+      },
+      {
+        id: 47,
+        title: 'Угорь темпура ролл',
+        price: 399,
+        image: 'https://static.pizzasushiwok.ru/images/menu_new/667-300.jpg',
+        ingredients: 'Рис, нори, угорь копченый, краб снежный, соус "Спайс", салат "Айсберг", сухари панировочные'
+      },
+      {
+        id: 48,
+        title: 'Токио темпура ролл',
+        price: 403,
+        image: 'https://static.pizzasushiwok.ru/images/menu_new/725-300.jpg',
+        ingredients: 'Рис, нори, соус "Спайс", креветки, лосось слабосоленый, угорь копченый, сухари панировочные'
+      }
+    ]);
+    const deserts = ref([
+      {
+        id: 50,
+        title: 'Чизкейк Нью-Йорк',
+        price: 149,
+        image: 'https://dodopizza-a.akamaihd.net/static/Img/Products/5a06bd533bb846f59cfb4b8c4e062f86_292x292.webp',
+        ingredients: 'Мы перепробовали тысячу десертов и наконец нашли любимца гостей — нежнейший творожный чизкейк'
+      },
+      {
+        id: 52,
+        title: 'Доума тарт',
+        price: 169,
+        image: 'https://dodopizza-a.akamaihd.net/static/Img/Products/6dd52d088264447da1e3479d92830781_292x292.webp',
+        ingredients: 'Сладкое безумие: шоколадная корзинка с морковно-творожной начинкой, медом, грецкими орехами и цитрусами'
+      },
+      {
+        id: 53,
+        title: 'Маффин Соленая карамель',
+        price: 99,
+        image: 'https://dodopizza-a.akamaihd.net/static/Img/Products/c3687909a9cf4064aabc5b07a166e848_292x292.webp',
+        ingredients: 'Раз откусить — навсегда полюбить! Оцените яркое сочетание соленой карамели и арахиса'
+      },
+      {
+        id: 54,
+        title: 'Маффин Три шоколада',
+        price: 99,
+        image: 'https://dodopizza-a.akamaihd.net/static/Img/Products/4922d35d13ef4acba55944a5d5cdae70_292x292.webp',
+        ingredients: 'Ну и кекс этот маффин! Он из натурального какао, а внутри — нежная начинка из кубиков белого и молочного шоколада'
+      },
+      {
+        id: 55,
+        title: 'Фондан',
+        price: 289,
+        image: 'https://dodopizza-a.akamaihd.net/static/Img/Products/cb92b92972a14794a8b939e445e07070_292x292.webp',
+        ingredients: 'Четверо из пяти гостей говорят «Oh la la!», когда едят этот французский десерт с хрустящей корочкой и топленой шоколадной начинкой'
+      },
+      {
+        id: 56,
+        title: 'Бруслетики',
+        price: 230,
+        image: 'https://dodopizza-a.akamaihd.net/static/Img/Products/628471b5fa7848c29a1942d22310002a_292x292.webp',
+        ingredients: 'Это задорные сладкие рулетики, в которых закрутился микс из натуральной брусники и сгущенного молока'
+      },
+      {
+        id: 57,
+        title: 'Манго-шейк',
+        price: 205,
+        image: 'https://dodopizza-a.akamaihd.net/static/Img/Products/9116ce0bb6c448f1a7fdaf49830a4da9_292x292.webp',
+        ingredients: 'Жаркое тропическое лето в стакане — молочный коктейль с манговым пюре'
+      },
+      {
+        id: 63,
+        title: 'Айс Капучино',
+        price: 199,
+        image: 'https://dodopizza-a.akamaihd.net/static/Img/Products/265f35eba4624852bf4b2e73a53f4c83_292x292.webp',
+        ingredients: 'Освежающий напиток для любителей кофе. В составе эспрессо, пломбир и бодрость на весь день'
+      },
+      {
+        id: 58,
+        title: 'Молочный коктейль с печеньем Орео',
+        price: 205,
+        image: 'https://dodopizza-a.akamaihd.net/static/Img/Products/de7a12c1a960434cadc309df31da75ed_292x292.webp',
+        ingredients: 'Как вкуснее есть печенье? Его лучше пить! Попробуйте молочный коктейль с мороженым и дробленым печеньем «Орео»'
+      },
+      {
+        id: 89,
+        title: 'Клубничный молочный коктейль',
+        price: 205,
+        image: 'https://dodopizza-a.akamaihd.net/static/Img/Products/5a02cf91c51b4f3d87a124dc486c1f74_292x292.webp',
+        ingredients: 'Не важно, какое время года на улице, этот коктейль с клубничным сиропом вернет вас в лето с одного глотка'
+      },
+      {
+        id: 60,
+        title: 'Классический молочный коктейль',
+        price: 175,
+        image: 'https://dodopizza-a.akamaihd.net/static/Img/Products/1155a1673130444b9ce96b8e6f9ce307_292x292.webp',
+        ingredients: 'В мире так много коктейлей, но классика — вечна. Попробуйте наш молочный напиток с мороженым'
+      },
+      {
+        id: 61,
+        title: 'Карамельное яблоко молочный коктейль',
+        price: 205,
+        image: 'https://dodopizza-a.akamaihd.net/static/Img/Products/6963ad0a61434948ae262e7cf2414d1a_292x292.webp',
+        ingredients: 'Уютное сочетание яблочного вкуса, теплой карамели, молока и мороженого в вашем стакане'
+      },
+      {
+        id: 62,
+        title: 'Банановый молочный коктейль',
+        price: 205,
+        image: 'https://dodopizza-a.akamaihd.net/static/Img/Products/552bcfeb75814ab9b87d8d06060cc9d9_292x292.webp',
+        ingredients: 'По-настоящему солнечный! Молочный коктейль с добавлением бананового пюре'
+      },
+      {
+        id: 49,
+        title: 'Шоколадный молочный коктейль',
+        price: 199,
+        image: 'https://dodopizza-a.akamaihd.net/static/Img/Products/bf5141d0f4764c3ab744244475782662_292x292.webp',
+        ingredients: 'Очаровательная шоколадная нежность. Попробуйте молочный коктейль с какао и мороженым'
+      },
+      {
+        id: 51,
+        title: 'Чизкейк банановый с шоколадным печеньем',
+        price: 149,
+        image: 'https://dodopizza-a.akamaihd.net/static/Img/Products/2556eeed7a3b4822ba62a6f30e111465_292x292.webp',
+        ingredients: 'Солнечный снаружи и яркий по вкусу внутри. Летняя новинка — нежный чизкейк с бананом и шоколадным печеньем'
+      },
+    ])
+    
     return {
+      sushis,
       pizzas,
+      deserts,
       count,
       price
     }

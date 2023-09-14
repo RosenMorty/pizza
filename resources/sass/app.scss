@@ -61,7 +61,7 @@ h1 {
 
 h2 {
   font-weight: 600;
-  font-size: 28px;
+  font-size: 36px;
   line-height: 30px
 }
 
@@ -71,7 +71,7 @@ a {
 
 .header {
   border-bottom: 1px solid #f6f6f6;
-  padding: 40px 0
+  padding: 25px 0;
 }
 
 .header .container {
@@ -83,7 +83,7 @@ a {
   align-items: center;
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
-  justify-content: space-between
+  justify-content: space-between;
 }
 
 .header__logo {
@@ -266,7 +266,9 @@ a {
 
 .categories ul li {
   background-color: #f9f9f9;
-  padding: 13px 30px;
+  display: inline-block;
+  font-size: 17px;
+  padding: 13px 10px;
   border-radius: 30px;
   margin-right: 10px;
   font-weight: bold;
@@ -281,16 +283,19 @@ a {
 }
 
 .categories ul li:hover {
-  background-color: #f4f4f4
+  color: rgb(255, 105, 0);
+  text-decoration: none;
+  cursor: pointer;
+  outline: none;
+  font-weight: 600;
 }
 
 .categories ul li:active {
-  background-color: #ececec
-}
-
-.categories ul li.active {
-  background-color: #282828;
-  color: #fff
+  color: rgb(255, 105, 0);
+  text-decoration: none;
+  cursor: pointer;
+  outline: none;
+  font-weight: 600;
 }
 
 .sort {
@@ -330,7 +335,8 @@ a {
   border-radius: 10px;
   overflow: hidden;
   padding: 10px 0;
-  width: 160px
+  width: 160px;
+  visibility: hidden;
 }
 
 .sort__popup ul {
@@ -351,25 +357,25 @@ a {
   color: #fe5f1e
 }
 
-.pizza-block {
+.pizza-block, .sushi-block, .desert-block {
   width: 280px;
   text-align: center;
-  margin-bottom: 65px
+  margin-bottom: 45px;
 }
 
 .pizza-block:not(:nth-of-type(4n)) {
   margin-right: 35px
 }
 
-.pizza-block__image {
+.pizza-block__image, .sushi-block__image, .desert-block__image {
   width: 260px
 }
 
-.pizza-block__title {
+.pizza-block__title, .sushi-block__title, .desert-block__title {
   font-size: 20px;
-  font-weight: 900;
+  font-weight: 750;
   letter-spacing: 1%;
-  margin-bottom: 20px
+  margin-bottom: 20;
 }
 
 .pizza-block__selector {
@@ -382,7 +388,8 @@ a {
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
-  padding: 6px
+  padding: 6px;
+  margin: 5px;
 }
 
 .pizza-block__selector ul {
@@ -421,7 +428,14 @@ a {
   cursor: auto
 }
 
-.pizza-block__bottom {
+.pizza-block__ingredients, .sushi-block__ingredients, .desert-block__ingredients {
+  align-items: center;
+  height: 100px;
+  width: 280px;
+  padding: 8px;
+}
+
+.pizza-block__bottom, .sushi-block__bottom, .desert-block__bottom {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -434,7 +448,7 @@ a {
   margin-top: 20px
 }
 
-.pizza-block__price {
+.pizza-block__price, .sushi-block__price, .desert-block__price {
   font-weight: bold;
   font-size: 22px;
   line-height: 27px;
@@ -442,7 +456,15 @@ a {
 }
 
 body {
-  background-color: #ffdf8c
+  // background-color: #ffdf8c;
+  background-image: url(https://img3.akspic.ru/crops/0/8/4/5/6/165480/165480-zayadlyj-oblako-atmosfera-sumrak-poslesvechenie-3840x2160.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+  -moz-background-size: cover;
+  -moz-background-size: cover;
+  -webkit-backdrop-size: cover;
 }
 
 .wrapper {
@@ -455,11 +477,15 @@ body {
 }
 
 .content {
-  padding: 40px 0
+  padding: 15px 0
 }
 
 .content__title {
-  margin: 35px 0
+  margin: 32px 0;
+  width: 100%;
+  font-weight: 600;
+  font-size: 36px;
+  margin: 32px 0px;
 }
 
 .content__items {
